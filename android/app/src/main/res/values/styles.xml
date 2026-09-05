@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.CoCreate" parent="android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:fontFamily">sans</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:statusBarColor">#05060D</item>
+        <item name="android:navigationBarColor">#05060D</item>
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="android:colorAccent">#7758FF</item>
+        <item name="android:windowBackground">#05060D</item>
+    </style>
+</resources>
+

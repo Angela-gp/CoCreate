@@ -36,6 +36,8 @@ next-env.d.ts
 /dist/
 /.wrangler/
 /target/
+/android/.gradle/
+/android/**/build/
 *.tsbuildinfo
 /outputs/
 /work/

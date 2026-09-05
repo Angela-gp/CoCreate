@@ -4,6 +4,8 @@
 
 [Live demo](https://cocreate-demo.gelya-privalova.chatgpt.site) · [Architecture](docs/architecture.md) · [Solana program](programs/cocreate/src/lib.rs)
 
+Android demo: `CoCreate-1.0.0-demo.apk` is built from the checked-in `android/` project and loads the same public responsive experience.
+
 ## The problem
 
 The creative economy is growing, but early-stage creators still lack one place to finance ambitious work, build a committed audience and protect ownership. Traditional donations are disconnected from the finished project, while blockchain products often expose users to wallet, token and fee complexity before they understand the value.
@@ -53,6 +55,7 @@ The hosted demo never asks for mainnet funds. Wallet detection is real; transact
 ├── assets/
 │   ├── .gitkeep
 │   └── project.jpg              # Project presentation preview
+├── android/                     # Native Android WebView wrapper
 ├── backend/src/index.ts         # Indexed campaign read model
 ├── docs/
 │   ├── api.md
@@ -89,6 +92,19 @@ Production validation:
 npm run typecheck
 npm run build
 ```
+
+## Android APK
+
+The Android application targets API 35, supports Android 6.0+ and only requests internet access. It loads the public HTTPS CoCreate deployment inside a hardened WebView.
+
+Build it with Android Studio, or from a configured Android SDK terminal:
+
+```bash
+cd android
+./gradlew assembleDebug
+```
+
+The APK is created at `android/app/build/outputs/apk/debug/app-debug.apk`.
 
 ## Solana program
 
