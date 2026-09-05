@@ -7,7 +7,7 @@
 
 > A Solana-powered crowdfunding platform where creators fund original work, supporters receive meaningful access, and campaign rules remain transparent.
 
-[Live Demo](https://cocreate-demo.gelya-privalova.chatgpt.site) · [2-minute Demo Script](docs/product.md) · [Architecture](docs/architecture.md) · [Solana Program](programs/cocreate/programs/creator-fund/src/lib.rs)
+[Live Demo](https://cocreate-demo.gelya-privalova.chatgpt.site) · [Architecture](docs/architecture.md) · [Solana Program](programs/cocreate/programs/creator-fund/src/lib.rs)
 
 ---
 
