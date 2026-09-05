@@ -78,7 +78,6 @@ The hosted demo never asks for mainnet funds. Wallet detection is real; transact
 ├── programs/cocreate/src/lib.rs # Anchor escrow and authorship program
 ├── scripts/deploy.ts            # Guarded Devnet deployment helper
 ├── tests/                       # Product-model tests
-├── app/                         # Vinext route + visual system
 ├── .env.example
 ├── CONTRIBUTING.md
 ├── LICENSE
