@@ -85,13 +85,14 @@ The hosted demo never asks for mainnet funds. Wallet detection is real; transact
 └── README.md
 ```
 
-The required hackathon scaffold follows [`Marakaya/colosseum_example`](https://github.com/Marakaya/colosseum_example). The root `app/`, `components/`, `hooks/`, `lib/` and `public/` directories are the framework runtime used by the working hosted web demo. The optional `android/` wrapper remains in source but is excluded from CI.
+The required hackathon scaffold follows [`Marakaya/colosseum_example`](https://github.com/Marakaya/colosseum_example). Web framework files and the optional Android wrapper live inside `frontend/`; Android is excluded from CI.
 
 ## Run locally
 
 Requirements: Node.js 22+ and npm.
 
 ```bash
+cd frontend
 npm install
 npm run dev
 ```
@@ -109,7 +110,7 @@ npm run build
 
 The Anchor program implements deterministic campaign accounts, SOL escrow, tracked contributor receipts, goal-based creator release, deadline-based refunds, immutable content fingerprints and contribution events.
 
-Before a real deployment, generate a dedicated program keypair, replace the example program ID in `declare_id!`, `Anchor.toml` and `.env`, then complete an independent security review.
+Before a real deployment, generate a dedicated program keypair, replace the example program ID in `declare_id!`, `programs/cocreate/Anchor.toml` and `.env`, then complete an independent security review.
 
 ## Tech stack
 

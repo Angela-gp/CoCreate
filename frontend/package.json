@@ -10,7 +10,7 @@
     "build": "vinext build",
     "start": "wrangler dev --config dist/server/wrangler.json",
     "typecheck": "tsc --noEmit",
-    "test:model": "node --experimental-strip-types --test tests/*.test.ts",
+    "test:model": "node --experimental-strip-types --test ../tests/*.test.ts",
     "lint": "oxlint",
     "format": "oxfmt"
   },

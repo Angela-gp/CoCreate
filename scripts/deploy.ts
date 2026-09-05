@@ -9,9 +9,9 @@ if (missing.length > 0) {
 }
 
 const result = spawnSync('anchor', ['deploy', '--provider.cluster', 'devnet'], {
+  cwd: new URL('../programs/cocreate/', import.meta.url),
   stdio: 'inherit',
   shell: process.platform === 'win32',
 });
 
 process.exit(result.status ?? 1);
-

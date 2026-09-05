@@ -16,4 +16,4 @@ cluster = "devnet"
 wallet = "~/.config/solana/id.json"
 
 [scripts]
-test = "npm run test:program"
+test = "npm --prefix ../../frontend run test:model"
