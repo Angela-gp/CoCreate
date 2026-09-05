@@ -1,64 +1,47 @@
-# CoCreate architecture
+# Архитектура Creator Fund
 
-## Product surface
-
-The web application is a single responsive working surface. It keeps the demo fast while preserving the key product domains: discovery, campaign detail, wallet connection, contribution, Creator Passes, creator setup and a public participation profile.
+## Общая схема
 
 ```text
-Creator / supporter
-        │
-        ▼
-React product UI ───── injected Solana wallet
-        │                        │
-        ├── campaign reads       ├── identity + approval
-        ├── contribution flow    └── signed transaction
-        └── pass + history
-                 │
-                 ▼
-          CoCreate Anchor program
-        ├── Campaign PDA (escrow)
-        ├── Contribution PDA
-        ├── ContentRecord PDA
-        └── contribution events
-                 │
-          optional indexer/IPFS
+Пользователь
+   │
+   ├── Demo wallet ──> локальный persistent ledger
+   │
+   └── Phantom / Backpack / Solflare
+                    │ подпись
+                    v
+              Solana Devnet
+                    │
+                    ├── SOL / SPL transfer + memo (текущий сайт)
+                    └── Anchor Creator Fund (следующий этап интеграции)
 ```
 
-## On-chain accounts
+Frontend отвечает за интерфейс, подключение Wallet Standard, отображение кампаний, Pass, голосований и истории. Demo-режим хранит повторяемый ledger в браузере, поэтому показ не зависит от сети и расширения кошелька.
 
-### Campaign
+В Devnet приватный ключ остаётся в Phantom, Backpack или Solflare. Сайт формирует транзакцию, кошелёк подписывает её, сеть подтверждает, после чего пользователь получает ссылку на Solana Explorer. USDC работает как SPL-токен; для теста у кошелька должен быть соответствующий Devnet mint.
 
-Seed: `campaign + creator + campaign_id`
+## On-chain модель
 
-Stores the creator, goal, raised amount, deadline, content fingerprint and lifecycle flags. The PDA owns campaign escrow until release or refund rules are met.
+Anchor-программа в `programs/cocreate/programs/creator-fund` реализует:
 
-### Contribution
+- `Platform`: authority, treasury, fee в basis points;
+- `Campaign`: автор, цель, дедлайн, валюта, статусы и доли получателей;
+- `Vault`: PDA escrow для SOL или token account для SPL;
+- `Contribution`: вклад отдельного участника;
+- `CreatorPass`: уровень участника;
+- `Poll`: варианты ответа и накопленные веса;
+- `VoteRecord`: защита от повторного голоса.
 
-Seed: `contribution + campaign + supporter`
+Деньги не должны контролироваться интерфейсом: правила проверяются программой. При успехе `settle_*` направляет 5% в treasury и распределяет остаток автору/команде. При неуспехе `refund_*` позволяет участнику вернуть собственный вклад.
 
-Stores each supporter’s cumulative contribution. A future pass-minting instruction can derive tier and metadata from this account without trusting an application database.
+## Границы доверия
 
-### ContentRecord
+- Расширение кошелька хранит ключ и подтверждает транзакции.
+- RPC передаёт запросы, но не может подписать их за пользователя.
+- Клиентский ledger нужен только для демонстрации и не является финансовым источником истины.
+- После интеграции Anchor источником истины становятся PDA-аккаунты и события программы.
+- До mainnet программа требует аудита, стабильного RPC, мониторинга и юридической проверки.
 
-Seed: `content + creator + content_hash`
+## Почему два режима
 
-Anchors a SHA-256-style content fingerprint, registration time, metadata URI and license URI to the creator’s signature.
-
-## Trust boundaries
-
-- The wallet is non-custodial and must approve state-changing transactions.
-- UI totals are presentational; program account balances and events are canonical.
-- Off-chain media should be content-addressed. The chain stores fingerprints and URIs, not large files.
-- Creator Pass media and perks may evolve, but eligibility must derive from the contribution account.
-- The program must be audited before mainnet deployment.
-
-## MVP versus production
-
-| Capability | MVP | Production path |
-| --- | --- | --- |
-| Project discovery | Realistic local data | Indexed program accounts + moderation |
-| Wallet connection | Injected wallet detection | Wallet Standard adapter set |
-| Contribution UX | Safe simulated Devnet confirmation | Serialized Anchor instruction + confirmation polling |
-| Escrow logic | Anchor source included | Deployed, audited program and upgrade policy |
-| Creator Pass | Tiered demo artifact | Token-2022 / compressed NFT or soulbound receipt |
-| Content rights | Hash registry instruction | IPFS metadata, licensing templates and dispute process |
+`Demo` позволяет за две минуты показать полный цикл без риска и ожидания сети. `Devnet` доказывает реальное подключение кошелька, подпись и запись транзакции в Solana. Переключатель находится в инструментах демонстрации.

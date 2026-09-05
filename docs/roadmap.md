@@ -1,29 +1,27 @@
 # Roadmap
 
-## Demo-ready MVP
+## Готово для демонстрации
 
-- Responsive discovery and campaign views
-- Wallet Standard discovery with a reliable demo fallback
-- Demo / Devnet switch with public transaction proof
-- SOL contribution flow and Creator Pass tiers
-- Participation history and creator onboarding concept
-- Anchor escrow, refunds, content fingerprints and events
-- Automated web, TypeScript and program checks
+- полноценный React-сайт с адаптивным интерфейсом;
+- Demo / Devnet и Wallet Standard;
+- SOL/USDC, airdrop, Explorer и история;
+- кампании, кабинеты, Creator Pass и голосования;
+- escrow-сценарии выплаты/возврата и комиссия 5%;
+- Anchor-программа и интеграционные тесты в сохранённой архитектуре репозитория.
 
-## Devnet pilot
+## Следующий blockchain-этап
 
-- Deploy a dedicated program keypair
-- Replace simulated confirmation with signed Anchor instructions
-- Replace the Devnet proof memo with signed Anchor contribution instructions
-- Index program accounts and contribution events
-- Mint non-transferable or compressed Creator Pass receipts
-- Add IPFS metadata and moderation tools
+1. Синхронизировать Program ID с новым deploy keypair.
+2. Собрать и развернуть Anchor-программу в Devnet.
+3. Инициализировать `Platform` с treasury и комиссией 500 bps.
+4. Сгенерировать IDL/types и заменить frontend transfer + memo на вызовы инструкций программы.
+5. Читать кампании, вклады, Pass и голосования из PDA, добавить индексатор событий.
+6. Прогнать Anchor-тесты и end-to-end сценарии на Devnet.
 
-## Production readiness
+## До mainnet
 
-- Independent smart-contract audit
-- Upgrade authority and emergency policy
-- Legal review for crowdfunding, licensing and revenue sharing
-- Creator verification and abuse prevention
-- Accessibility and device testing matrix
-- Analytics, observability and recovery playbooks
+- независимый аудит смарт-контракта;
+- multisig и операционные ограничения для treasury;
+- защищённый RPC, мониторинг и алерты;
+- юридическая проверка краудфандинга и работы со стейблкоинами;
+- резервное копирование метаданных и стратегия обновления программы.

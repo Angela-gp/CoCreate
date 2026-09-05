@@ -47,6 +47,8 @@ next-env.d.ts
 /frontend/android/.gradle/
 /frontend/android/**/build/
 /programs/cocreate/target/
+/programs/**/keys/
+**/program-keypair.json
 *.tsbuildinfo
 /outputs/
 /work/

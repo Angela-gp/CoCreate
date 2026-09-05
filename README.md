@@ -1,137 +1,90 @@
-# CoCreate
+# Creator Fund
 
-> A Solana-powered platform where creators fund original work, supporters earn meaningful access, and authorship stays verifiable.
+Creator Fund — краудфандинговая платформа для авторов на Solana. Средства кампании учитываются через escrow-модель, участники получают Creator Pass и голосуют за развитие проекта с весом, зависящим от уровня Pass.
 
-[![CI](https://github.com/Angela-gp/CoCreate/actions/workflows/ci.yml/badge.svg)](https://github.com/Angela-gp/CoCreate/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Solana](https://img.shields.io/badge/Built%20on-Solana-14F195)](https://solana.com/)
+[Сайт](https://cocreate-demo.gelya-privalova.chatgpt.site) · [Архитектура](docs/architecture.md) · [Сценарий показа](docs/product.md) · [Anchor-программа](programs/cocreate/programs/creator-fund/src/lib.rs)
 
-[Live demo](https://cocreate-demo.gelya-privalova.chatgpt.site) · [Architecture](docs/architecture.md) · [Solana program](programs/cocreate/src/lib.rs)
+## Что работает
 
-[![CoCreate product preview](assets/project.png)](https://cocreate-demo.gelya-privalova.chatgpt.site)
+- Phantom, Backpack и Solflare через Wallet Standard;
+- локальный демо-кошелёк и переключение Demo / Devnet;
+- подпись и отправка реальных Devnet-транзакций, ссылки на Solana Explorer;
+- запрос тестового SOL через airdrop;
+- кампании в SOL и USDC;
+- успешная кампания: выплата с комиссией платформы 5%;
+- неуспешная кампания: возврат участникам;
+- четыре уровня Creator Pass и голосование с разным весом;
+- локальная история транзакций, кабинет автора и кабинет участника;
+- создание новой кампании через пошаговую форму.
 
-## Team
+## Блокчейн
 
-| Name | Role |
+Anchor-программа является главным источником правил движения денег. Она содержит инструкции:
+
+| Инструкция | Назначение |
 | --- | --- |
-| Adelina Myazova | Founder |
-| Angelina Evgenievna | Developer |
+| `initialize_platform` | Создать настройки платформы и комиссию |
+| `create_campaign_native` / `create_campaign_spl` | Создать SOL- или SPL-кампанию |
+| `contribute_native` / `contribute_spl` | Заблокировать вклад в PDA escrow |
+| `finalize` | Зафиксировать успех или неуспех после достижения цели/дедлайна |
+| `settle_native` / `settle_spl` | Распределить успешный сбор и удержать 5% |
+| `refund_native` / `refund_spl` | Вернуть вклад при неуспешной кампании |
+| `create_poll` / `cast_vote` | Создать голосование и записать взвешенный голос |
 
-## The problem
+PDA: `Platform`, `Campaign`, `Vault`, `Contribution`, `CreatorPass`, `Poll`, `VoteRecord`.
 
-The creative economy is growing, but early-stage creators still lack one place to finance ambitious work, build a committed audience and protect ownership. Traditional donations are disconnected from the finished project, while blockchain products often expose users to wallet, token and fee complexity before they understand the value.
+Program ID: `99exy144EKNqoRWKn9S1Eu3AvySgPnwrbuSrX5zrxdsi`.
 
-## The solution
+Важно: исходники и интеграционные тесты программы находятся в репозитории, но эта версия программы ещё не развернута в Devnet. Поэтому текущий режим Devnet действительно просит подпись кошелька и отправляет SOL/SPL-транзакцию с memo, а продуктовые состояния дополнительно показывает клиентский ledger. Перед mainnet нужны деплой Anchor-программы, подключение frontend к её инструкциям и аудит.
 
-CoCreate turns a contribution into participation:
+## Структура
 
-1. A creator publishes a campaign with a funding goal, deadline and content fingerprint.
-2. Supporters contribute SOL to program-controlled escrow.
-3. Their contribution level unlocks a Creator Pass with access, voting or credit benefits.
-4. When the goal is reached, funds can be released to the creator; unsuccessful campaigns remain refundable.
-5. Content hashes and license metadata can be registered on Solana as durable evidence of authorship.
-
-## Demo flow
-
-- Explore realistic music, film and digital-art campaigns.
-- Open a project and choose 5, 20, 50 or 100 SOL.
-- Choose the built-in demo wallet or a Wallet Standard wallet such as Phantom, Solflare or Backpack.
-- Keep the safe local Demo mode or switch to Devnet and sign a public proof transaction.
-- Receive a tiered Creator Pass and inspect the persistent participation ledger.
-
-The hosted product never connects to mainnet. Demo mode requires no extension and never requests funds. Devnet mode signs a real memo transaction that is verifiable in Solana Explorer, while the campaign amount remains simulated until the reviewed escrow program is deployed.
-
-## Two-minute presentation
-
-The exact click-by-click script is documented in [Product specification](docs/product.md#демонстрация-за-2-минуты). For the safest live presentation, stay in **Demo** mode and choose **Demo wallet**.
-
-## Why Solana
-
-- Fast settlement keeps support flows close to familiar checkout experiences.
-- Low fees make small contributions viable.
-- Program-derived accounts provide transparent campaign escrow.
-- Public content fingerprints and contribution events make authorship and funding auditable.
-- The same wallet carries identity, access and proof of participation across the ecosystem.
-
-## Creator Pass tiers
-
-| Tier | Contribution | Core access |
-| --- | ---: | --- |
-| Supporter | 5 SOL | Backstage feed |
-| Insider | 20 SOL | Backstage feed and community votes |
-| Producer | 50 SOL | Credits and private releases |
-| Executive | 100 SOL | Closed sessions and event invitations |
-
-## Repository layout
+Верхнеуровневая архитектура исходного репозитория сохранена:
 
 ```text
-.
-├── .github/workflows/ci.yml     # Automated web + program checks
-├── assets/
-│   ├── .gitkeep
-│   └── project.png              # Project presentation preview
-├── backend/src/index.ts         # Indexed campaign read model
-├── docs/
-│   ├── api.md
-│   ├── architecture.md
-│   ├── product.md
-│   └── roadmap.md
-├── frontend/src/
-│   ├── App.tsx                  # Interactive product demo
-│   └── index.tsx
-├── programs/cocreate/src/lib.rs # Anchor escrow and authorship program
-├── scripts/deploy.ts            # Guarded Devnet deployment helper
-├── tests/                       # Product-model tests
-├── .env.example
-├── CONTRIBUTING.md
-├── LICENSE
-└── README.md
+frontend/                         React/Vite сайт и интеграция кошельков
+programs/cocreate/                Anchor workspace
+  programs/creator-fund/          Solana-программа
+  tests/                          Anchor-интеграционные тесты
+backend/                          место для индексатора/API
+docs/                             архитектура, сценарий и roadmap
+tests/                            тесты клиентской модели
+assets/                           материалы проекта
+scripts/                          вспомогательные сценарии
 ```
 
-Web framework files and the optional Android wrapper live inside `frontend/`; Android is excluded from CI.
+Android-обёртка Rustem не переносилась: существующая папка `frontend/android` сохранена как технический ориентир. Приватный `program-keypair.json`, `node_modules` и готовые сборки в Git не добавляются.
 
-## Run locally
-
-Requirements: Node.js 22+ and npm.
+## Запуск сайта
 
 ```bash
 cd frontend
-npm install
+npm ci
 npm run dev
 ```
 
-Then open `http://localhost:3000`.
-
-Production validation:
+Проверка и production-сборка:
 
 ```bash
 npm run typecheck
+npm run test:model
 npm run build
+npm run preview
 ```
 
-## Solana program
+Необязательный RPC задаётся через `VITE_SOLANA_RPC_URL`; пример находится в `.env.example`.
 
-The Anchor program implements deterministic campaign accounts, SOL escrow, tracked contributor receipts, goal-based creator release, deadline-based refunds, immutable content fingerprints and contribution events.
+## Проверка Anchor-программы
 
-Before a real deployment, generate a dedicated program keypair, replace the example program ID in `declare_id!`, `programs/cocreate/Anchor.toml` and `.env`, then complete an independent security review.
+Нужны Rust, Solana CLI, Anchor 0.30.1 и Yarn:
 
-## Tech stack
+```bash
+cd programs/cocreate
+yarn install
+anchor build
+anchor test
+```
 
-- React 19, TypeScript and Vinext
-- Tailwind CSS and accessible Shadcn primitives
-- Solana Wallet Adapter with Wallet Standard discovery
-- Solana web3.js Devnet transactions
-- Solana + Anchor smart contract workspace
-- Cloudflare-compatible OpenAI Sites deployment
+## Стек
 
-## Business model
-
-CoCreate takes a 5% fee only from successfully completed campaigns. There are no hidden user fees in the product model.
-
-## Status
-
-Presentation MVP. The interface includes a safe local simulator and an optional Devnet proof flow. The Anchor program is included for deployment and audit. Mainnet use is out of scope until the contract, pass-minting policy and legal terms have been independently reviewed.
-
-## License
-
-MIT
+React 18, TypeScript, Vite, Zustand, Solana Wallet Adapter/Wallet Standard, `@solana/web3.js`, SPL Token, Rust и Anchor 0.30.1.

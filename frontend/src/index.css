@@ -1,0 +1,59 @@
+/* Шрифты вшиты в бандл: APK и офлайн-открытие не зависят от Google Fonts. */
+@import '@fontsource-variable/inter/wght.css';
+@import '@fontsource-variable/jetbrains-mono/wght.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+    --sb: rgba(255, 255, 255, 0.09);
+  }
+  * { -webkit-tap-highlight-color: transparent; }
+  html, body { @apply bg-ink-900 text-txt-hi; }
+  body {
+    font-feature-settings: 'cv11', 'ss01';
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    background-image:
+      radial-gradient(900px 520px at 12% -8%, rgba(153, 69, 255, 0.13), transparent 70%),
+      radial-gradient(760px 460px at 96% 4%, rgba(0, 209, 255, 0.08), transparent 68%);
+    background-attachment: fixed;
+  }
+  ::selection { background: rgba(153, 69, 255, 0.35); }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--sb); border-radius: 99px; border: 2px solid transparent; background-clip: content-box; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.18); background-clip: content-box; }
+  input, textarea, select { @apply bg-ink-800 border border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-txt-hi outline-none transition; }
+  input::placeholder, textarea::placeholder { @apply text-txt-lo; }
+  input:focus, textarea:focus, select:focus { @apply border-sol-purple/60; box-shadow: 0 0 0 3px rgba(153, 69, 255, 0.14); }
+  input[type='range'] { @apply p-0 border-0 bg-transparent; }
+  h1, h2, h3, h4 { @apply font-semibold tracking-[-0.02em]; }
+}
+
+@layer components {
+  .panel { @apply rounded-xl2 border border-white/[0.07] bg-ink-850/80 shadow-card backdrop-blur-sm; }
+  .panel-flat { @apply rounded-xl2 border border-white/[0.06] bg-white/[0.018]; }
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04]
+           px-2.5 py-1 text-[11px] font-medium text-txt-mid;
+  }
+  .eyebrow { @apply text-[11px] font-bold uppercase tracking-[0.16em] text-txt-lo; }
+  .grad-text { @apply bg-brand-text bg-clip-text text-transparent; }
+  .sol-text { @apply bg-sol-grad bg-clip-text text-transparent; }
+  .num { @apply font-mono tabular-nums tracking-tight; }
+  .link { @apply text-txt-mid transition-colors hover:text-txt-hi; }
+  .divider { @apply h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent; }
+  .skeleton { @apply rounded-lg bg-white/5; background-image: linear-gradient(90deg, transparent, rgba(255,255,255,.07), transparent); background-size: 460px 100%; background-repeat: no-repeat; @apply animate-shimmer; }
+  .hide-scroll { scrollbar-width: none; }
+  .hide-scroll::-webkit-scrollbar { display: none; }
+  .grid-lines {
+    background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+    background-size: 34px 34px;
+  }
+}
+
+.wallet-adapter-button-trigger { background: transparent !important; }
