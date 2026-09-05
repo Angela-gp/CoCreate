@@ -3,7 +3,8 @@
 ## Demo-ready MVP
 
 - Responsive discovery and campaign views
-- Wallet detection with a reliable demo fallback
+- Wallet Standard discovery with a reliable demo fallback
+- Demo / Devnet switch with public transaction proof
 - SOL contribution flow and Creator Pass tiers
 - Participation history and creator onboarding concept
 - Anchor escrow, refunds, content fingerprints and events
@@ -13,7 +14,7 @@
 
 - Deploy a dedicated program keypair
 - Replace simulated confirmation with signed Anchor instructions
-- Add Wallet Standard adapters and confirmation polling
+- Replace the Devnet proof memo with signed Anchor contribution instructions
 - Index program accounts and contribution events
 - Mint non-transferable or compressed Creator Pass receipts
 - Add IPFS metadata and moderation tools
@@ -26,4 +27,3 @@
 - Creator verification and abuse prevention
 - Accessibility and device testing matrix
 - Analytics, observability and recovery playbooks
-

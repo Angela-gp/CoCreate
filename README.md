@@ -8,9 +8,9 @@
 
 [Live demo](https://cocreate-demo.gelya-privalova.chatgpt.site) · [Architecture](docs/architecture.md) · [Solana program](programs/cocreate/src/lib.rs)
 
-[![CoCreate product preview](assets/project.jpg)](https://cocreate-demo.gelya-privalova.chatgpt.site)
+[![CoCreate product preview](assets/project.png)](https://cocreate-demo.gelya-privalova.chatgpt.site)
 
-## Submission to 2026 Solana National Hackathon
+## Team
 
 | Name | Role |
 | --- | --- |
@@ -35,11 +35,15 @@ CoCreate turns a contribution into participation:
 
 - Explore realistic music, film and digital-art campaigns.
 - Open a project and choose 5, 20, 50 or 100 SOL.
-- Connect an injected Solana wallet such as Phantom, or continue with the safe demo wallet.
-- Confirm the simulated Devnet contribution.
-- Receive a tiered Creator Pass and inspect participation history.
+- Choose the built-in demo wallet or a Wallet Standard wallet such as Phantom, Solflare or Backpack.
+- Keep the safe local Demo mode or switch to Devnet and sign a public proof transaction.
+- Receive a tiered Creator Pass and inspect the persistent participation ledger.
 
-The hosted demo never asks for mainnet funds. Wallet detection is real; transaction finalization is intentionally simulated until a deployed program ID and treasury policy are supplied.
+The hosted product never connects to mainnet. Demo mode requires no extension and never requests funds. Devnet mode signs a real memo transaction that is verifiable in Solana Explorer, while the campaign amount remains simulated until the reviewed escrow program is deployed.
+
+## Two-minute presentation
+
+The exact click-by-click script is documented in [Product specification](docs/product.md#демонстрация-за-2-минуты). For the safest live presentation, stay in **Demo** mode and choose **Demo wallet**.
 
 ## Why Solana
 
@@ -65,7 +69,7 @@ The hosted demo never asks for mainnet funds. Wallet detection is real; transact
 ├── .github/workflows/ci.yml     # Automated web + program checks
 ├── assets/
 │   ├── .gitkeep
-│   └── project.jpg              # Project presentation preview
+│   └── project.png              # Project presentation preview
 ├── backend/src/index.ts         # Indexed campaign read model
 ├── docs/
 │   ├── api.md
@@ -84,7 +88,7 @@ The hosted demo never asks for mainnet funds. Wallet detection is real; transact
 └── README.md
 ```
 
-The required hackathon scaffold follows [`Marakaya/colosseum_example`](https://github.com/Marakaya/colosseum_example). Web framework files and the optional Android wrapper live inside `frontend/`; Android is excluded from CI.
+Web framework files and the optional Android wrapper live inside `frontend/`; Android is excluded from CI.
 
 ## Run locally
 
@@ -115,6 +119,8 @@ Before a real deployment, generate a dedicated program keypair, replace the exam
 
 - React 19, TypeScript and Vinext
 - Tailwind CSS and accessible Shadcn primitives
+- Solana Wallet Adapter with Wallet Standard discovery
+- Solana web3.js Devnet transactions
 - Solana + Anchor smart contract workspace
 - Cloudflare-compatible OpenAI Sites deployment
 
@@ -124,7 +130,7 @@ CoCreate takes a 5% fee only from successfully completed campaigns. There are no
 
 ## Status
 
-Hackathon MVP. The interface and demo journey are complete; the Anchor program is included for Devnet deployment and audit. Mainnet use is out of scope until the contract, pass-minting policy and legal terms have been reviewed.
+Presentation MVP. The interface includes a safe local simulator and an optional Devnet proof flow. The Anchor program is included for deployment and audit. Mainnet use is out of scope until the contract, pass-minting policy and legal terms have been independently reviewed.
 
 ## License
 
