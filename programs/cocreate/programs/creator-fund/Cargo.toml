@@ -1,7 +1,7 @@
 [package]
 name = "creator-fund"
 version = "0.1.0"
-description = "Creator Fund — эскроу для краудфандинга контент-проектов на Solana"
+description = "CoCreate — эскроу для краудфандинга контент-проектов на Solana"
 edition = "2021"
 
 [lib]

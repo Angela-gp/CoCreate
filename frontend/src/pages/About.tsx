@@ -39,8 +39,7 @@ export default function About() {
             <div className="flex items-center gap-3">
               <Logo size={44} />
               <div className="text-[26px] font-black uppercase leading-none tracking-tight">
-                <div>Creator</div>
-                <div className="grad-text">Fund</div>
+                <div className="grad-text">CoCreate</div>
               </div>
             </div>
             <h1 className="mt-6 text-xl font-black leading-tight">
@@ -49,7 +48,7 @@ export default function About() {
               Стать частью его создания.
             </h1>
             <p className="mt-3 text-[13px] leading-relaxed text-txt-mid">
-              Creator Fund — платформа на Solana, где блогеры собирают финансирование на свои контент-проекты у
+              CoCreate — платформа на Solana, где блогеры собирают финансирование на свои контент-проекты у
               аудитории. Все платежи и донаты проходят через Solana. Участники получают цифровое подтверждение
               своего участия и эксклюзивные привилегии.
             </p>
@@ -371,7 +370,7 @@ export default function About() {
         <Card>
           <div className="flex flex-wrap items-center justify-between gap-3">
             <h2 className="text-[15px] font-bold uppercase tracking-tight text-txt-hi">
-              Продуктовая модель Creator Fund
+              Продуктовая модель CoCreate
             </h2>
             <Badge tone="purple">Категория: SocialFi</Badge>
           </div>
@@ -409,7 +408,7 @@ export default function About() {
           <div className="mt-4 rounded-xl border border-sol-purple/25 bg-sol-purple/[0.06] p-4">
             <div className="eyebrow text-sol-violet">Короткое представление</div>
             <p className="mt-2 text-[13px] leading-relaxed text-txt-hi">
-              Мы рассматриваем <span className="font-semibold">Creator Fund</span> для блогеров и авторов контента,
+              Мы рассматриваем <span className="font-semibold">CoCreate</span> для блогеров и авторов контента,
               у которых есть проблема прозрачного финансирования проектов от аудитории. Solana может быть полезна
               благодаря быстрым и недорогим платежам и программируемым смарт-контрактам. В первую очередь нам
               необходимо проверить готовность аудитории финансировать проекты через такую модель.

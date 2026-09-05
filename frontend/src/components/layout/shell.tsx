@@ -239,14 +239,14 @@ export function Footer() {
               From followers to <span className="grad-text">co-creators.</span>
             </div>
             <p className="mt-2 max-w-md text-[13px] leading-relaxed text-txt-mid">
-              Creator Fund — платформа на Solana: блогеры собирают финансирование на контент-проекты,
+              CoCreate — платформа на Solana: блогеры собирают финансирование на контент-проекты,
               а аудитория становится частью их создания.
             </p>
           </div>
           <div className="flex items-center gap-3">
             <Logo size={30} />
             <div className="text-[12px] leading-tight text-txt-lo">
-              <div className="font-semibold text-txt-mid">Creator Fund</div>
+              <div className="font-semibold text-txt-mid">CoCreate</div>
               <div>Powered by Solana</div>
             </div>
           </div>

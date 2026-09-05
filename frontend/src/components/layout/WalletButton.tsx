@@ -100,7 +100,7 @@ export function WalletButton({ className }: { className?: string }) {
     const url = URL.createObjectURL(blob)
     const a = document.createElement('a')
     a.href = url
-    a.download = 'creator-fund-demo-keypair.json'
+    a.download = 'cocreate-demo-keypair.json'
     a.click()
     URL.revokeObjectURL(url)
     toast({

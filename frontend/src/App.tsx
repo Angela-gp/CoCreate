@@ -39,7 +39,7 @@ function WebMcpTools() {
         {
           name: 'start_campaign_creation',
           title: 'Создать кампанию',
-          description: 'Открыть рабочий мастер создания новой краудфандинговой кампании Creator Fund.',
+          description: 'Открыть рабочий мастер создания новой краудфандинговой кампании CoCreate.',
           inputSchema: { type: 'object', properties: {}, additionalProperties: false },
           annotations: { readOnlyHint: false, untrustedContentHint: false },
           execute: () => {

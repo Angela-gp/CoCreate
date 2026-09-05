@@ -1,6 +1,6 @@
-# Creator Fund
+# CoCreate
 
-Creator Fund — краудфандинговая платформа для авторов на Solana. Средства кампании учитываются через escrow-модель, участники получают Creator Pass и голосуют за развитие проекта с весом, зависящим от уровня Pass.
+CoCreate — краудфандинговая платформа для авторов на Solana. Средства кампании учитываются через escrow-модель, участники получают Creator Pass и голосуют за развитие проекта с весом, зависящим от уровня Pass.
 
 [Сайт](https://cocreate-demo.gelya-privalova.chatgpt.site) · [Архитектура](docs/architecture.md) · [Сценарий показа](docs/product.md) · [Anchor-программа](programs/cocreate/programs/creator-fund/src/lib.rs)
 

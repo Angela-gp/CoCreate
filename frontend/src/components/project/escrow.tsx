@@ -340,7 +340,7 @@ export function PayoutSplit({ project }: { project: Project }) {
         ))}
         <div className="flex items-center gap-2.5 border-t border-white/[0.07] pt-2">
           <span className="size-2 shrink-0 rounded-full bg-txt-lo" />
-          <span className="min-w-0 flex-1 truncate text-[12.5px] text-txt-mid">Платформа Creator Fund</span>
+          <span className="min-w-0 flex-1 truncate text-[12.5px] text-txt-mid">Платформа CoCreate</span>
           <span className="num shrink-0 text-[12px] font-semibold text-txt-hi">{usd(stats.feeUsd)}</span>
           <span className="num w-9 shrink-0 text-right text-[11px] text-txt-lo">5%</span>
         </div>

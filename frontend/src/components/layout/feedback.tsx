@@ -108,7 +108,7 @@ export function TxFlowOverlay() {
             <Loader2 className="size-3.5 animate-spin" />
             {cluster === 'devnet'
               ? 'Транзакция отправляется в кластер devnet'
-              : 'Симуляция инструкции программы creator_fund'}
+              : 'Симуляция инструкции программы CoCreate'}
           </div>
         )
       }
