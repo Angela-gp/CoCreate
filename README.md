@@ -2,9 +2,20 @@
 
 > A Solana-powered platform where creators fund original work, supporters earn meaningful access, and authorship stays verifiable.
 
+[![CI](https://github.com/Angela-gp/CoCreate/actions/workflows/ci.yml/badge.svg)](https://github.com/Angela-gp/CoCreate/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Solana](https://img.shields.io/badge/Built%20on-Solana-14F195)](https://solana.com/)
+
 [Live demo](https://cocreate-demo.gelya-privalova.chatgpt.site) · [Architecture](docs/architecture.md) · [Solana program](programs/cocreate/src/lib.rs)
 
-Android demo: `CoCreate-1.0.0-demo.apk` is built from the checked-in `android/` project and loads the same public responsive experience.
+[![CoCreate product preview](assets/project.jpg)](https://cocreate-demo.gelya-privalova.chatgpt.site)
+
+## Submission to 2026 Solana National Hackathon
+
+| Name | Role |
+| --- | --- |
+| Adelina Myazova | Founder |
+| Angelina Evgenievna | Developer |
 
 ## The problem
 
@@ -55,7 +66,6 @@ The hosted demo never asks for mainnet funds. Wallet detection is real; transact
 ├── assets/
 │   ├── .gitkeep
 │   └── project.jpg              # Project presentation preview
-├── android/                     # Native Android WebView wrapper
 ├── backend/src/index.ts         # Indexed campaign read model
 ├── docs/
 │   ├── api.md
@@ -75,6 +85,8 @@ The hosted demo never asks for mainnet funds. Wallet detection is real; transact
 └── README.md
 ```
 
+The required hackathon scaffold follows [`Marakaya/colosseum_example`](https://github.com/Marakaya/colosseum_example). The root `app/`, `components/`, `hooks/`, `lib/` and `public/` directories are the framework runtime used by the working hosted web demo. The optional `android/` wrapper remains in source but is excluded from CI.
+
 ## Run locally
 
 Requirements: Node.js 22+ and npm.
@@ -92,19 +104,6 @@ Production validation:
 npm run typecheck
 npm run build
 ```
-
-## Android APK
-
-The Android application targets API 35, supports Android 6.0+ and only requests internet access. It loads the public HTTPS CoCreate deployment inside a hardened WebView.
-
-Build it with Android Studio, or from a configured Android SDK terminal:
-
-```bash
-cd android
-./gradlew assembleDebug
-```
-
-The APK is created at `android/app/build/outputs/apk/debug/app-debug.apk`.
 
 ## Solana program
 
@@ -126,11 +125,6 @@ CoCreate takes a 5% fee only from successfully completed campaigns. There are no
 ## Status
 
 Hackathon MVP. The interface and demo journey are complete; the Anchor program is included for Devnet deployment and audit. Mainnet use is out of scope until the contract, pass-minting policy and legal terms have been reviewed.
-
-## Team
-
-- Adelina Myazova — Founder
-- Angelina Evgenievna — Developer
 
 ## License
 
