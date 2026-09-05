@@ -1,0 +1,18 @@
+[package]
+name = "cocreate"
+version = "0.1.0"
+description = "Solana escrow and authorship registry for CoCreate"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "cocreate"
+
+[features]
+no-entrypoint = []
+cpi = ["no-entrypoint"]
+default = []
+idl-build = ["anchor-lang/idl-build"]
+
+[dependencies]
+anchor-lang = { version = "0.31.1", features = ["init-if-needed"] }
